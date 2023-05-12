@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+
+<center>
+
+ {# {% for message in flashy %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in flashy %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+        {% endfor %} #}
+        <center>
+ <div class="text-center">
+
+  <div class="row text-center">
+ <div class="col-md-4">
+ <div class="form-group">
+    pour consulter votre liste de reservation 
+      </div>
+    </div> 
+<div class="col-md-4">
+ <div class="form-group">
+    <a href="{{ path('app_appointments') }}"><button type="button" class="btn btn-sm btn-outline-danger">liste de mes rendez vous</button></a>
+    </div>
+    </div> 
+    </div>
+    <div> 
+    
+<div class="container">
+   {{ form_start (form,{'attr': {'novalidate': 'novalidate '}} ) }} 
+    
+    <div class="text-center">
+     {{ form_label(form.appointmentDate,"date Rendez Vous") }}
+    {{ form_widget(form.appointmentDate) }}
+    {{ form_errors(form.appointmentDate) }}
+    <br/>
+    {{ form_label(form.type,"type Rendez Vous") }}
+    <div class="form-button-container">
+    
+  {{ form_widget(form.type) }}
+  {{ form_errors(form.type) }} 
+  <a href="{{ path('app_type_patient') }}"><button type="button" class="btn btn-sm btn-outline-danger">Informations sur les type </button></a>
+</div>
+<br> 
+ {{ form_label(form.categorie,"categorie Rendez Vous") }}
+      {{ form_widget(form.categorie) }}
+    {{ form_errors(form.categorie) }} 
+    <br/>
+    <center>
+    <button type="submit" class="btn btn-primary"
+             style= "font-size=16px" > confirmer votre Reservation</button>
+             </center>
+             </div>
+    {{ form_end(form) }}
+    <br/>
+    
+   
+    </div>
+    
+    
+    </center>
+    
+
+<style>
+.text-center{
+    margin : 50px
+}
+.form-control.datetimepicker-input {
+    border: 1px solid red;
+}
+.form-button-container {
+  display: flex;
+  align-items: center;
+}
+</style>
+{% endblock %}
+
+
+
+
+
+

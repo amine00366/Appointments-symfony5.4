@@ -1,0 +1,71 @@
+{% block body %}
+    <h1>Appointment Details</h1>
+
+    
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet'/>
+    <div id='map' style='width: 100%; height: 400px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmplcmJpIiwiYSI6ImNrdWp6bXJhdTE4MGwyd215bzhpb3c0OGYifQ.jW0ZovMg20DoAaiOtGkPhg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v10',
+            
+            zoom: 5
+        });
+
+        // Add a custom marker to the map
+        var marker = new mapboxgl.Marker({
+            color: 'red'
+        })
+       
+        .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<p>Doctor name: {{ appointment.doctor.name }}</p>, <img width="30px" height="30px" src="https://t3.ftcdn.net/jpg/02/60/04/08/360_F_260040863_fYxB1SnrzgJ9AOkcT0hoe7IEFtsPiHAD.jpg" />'))
+        .addTo(map);
+    </script>
+
+
+
+
+    <h1>Ajouter un docteur</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.latitude) }}
+    {{ form_row(form.longitude) }}
+    <div id='map' style='height: 500px;'></div>
+    {{ form_row(form._token) }}
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+ 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
+    <script>
+        mapboxgl.accessToken = 'your-mapbox-access-token';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [{{ form.vars.value.longitude }}, {{ form.vars.value.latitude }}],
+            zoom: 12
+        });
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+        .setLngLat([{{ form.vars.value.longitude }}, {{ form.vars.value.latitude }}])
+        .addTo(map);
+
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            document.getElementById('doctor_longitude').value = lngLat.lng;
+            document.getElementById('doctor_latitude').value = lngLat.lat;
+        }
+
+        marker.on('dragend', onDragEnd);
+    </script>
+{% endblock %}

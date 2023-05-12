@@ -1,0 +1,234 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+<div class="page-wrapper">
+
+
+
+
+            <div class="container-fluid">
+            
+               <a href="{{ path('app_addappoinment') }}"><button type="button" class="btn btn-gd btn-outline-info">ajouter </button></a>
+                <div class="row page-titles">
+          
+                    <div class="col-md-7 align-self-center">
+                        
+                    </div>
+                    
+                </div>
+               
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+
+
+</div>
+                                <h4 class="card-title">table des type des Rendez-Vous</h4>
+                                
+                                <div class="form-check">
+                                <div>
+                               
+                                {# <ul class="navbar-nav w-100" style="margin-top: 18px;">
+                        <li class="nav-item w-100">
+                             <form name="Search-method" id="Search-method"method="post" class="forms-sample" style="margin-left: 300px;">
+                                <div class="form-group col-md-5">
+                                    <label style="margin-top: 11px;margin-left: 10px;margin-right: 14px;padding-bottom: 7px;;">Option Recherche</label>
+                                    <select name="optionsearch" class="js-example-basic-single" style="width: 200px;height: 38px; color: white; background-color: #191c24; border-radius: 4px;text-align: center;border: 2px solid #0090e7;margin-right: 15px;">
+                                        <option value="">Choisi un Critére</option>
+                                        <option value="nomtype">Nom vehicule</option>
+                                        <input name="Search" type="text" class="form-control" placeholder="Search Events" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-sm btn-primary" type="Submit">Search</button>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <div class="input-group">
+                                       
+                                        </div>
+                                    </div>
+                                </div>
+                            </form> 
+                        </li>
+                    </ul> #}
+                                </div>
+                                </div>
+                               
+                                {# <form method="post" class="forms-sample" style="margin-left: 400px" >
+                                    <label class="form-check-label" >
+                                        <input type="radio"   value="nomtype"  >Nom</label>
+                                        <button type="Submit" class="btn btn-success btn-fw" style="margin: auto; ">Sort</button>
+                                </form>  #}
+ <center>
+
+
+<div class="album py-5 bg-light">
+        <div class="container">
+
+         <h4 style align=left>Chercher un type !!</h4>
+
+            <div class="sidebar-search">
+
+                <div class="input-group custom-search-form">
+
+                    <input type="text" id="search" class="form-control" placeholder="Search here">
+                </div>
+                <!-- /input-group -->
+            </div>
+            <ul class="nav" id="side-menu">
+                <li>
+                    
+                    <ul class="nav nav-second-level" id="entitiesNav">
+                    </ul>
+                </li>
+            </ul><br><br><br><br>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    var searchRequest = null;
+                    $("#search").keyup(function() {
+                        var minlength = 1;
+                        var that = this;
+                        var value = $(this).val();
+                        var entitySelector = $("#entitiesNav").html('');
+                        if (value.length >= minlength ) {
+                            if (searchRequest != null)
+                                searchRequest.abort();
+                            searchRequest = $.ajax({
+                                type: "GET",
+                                url: "{{ path('searchAJ') }}",
+                                data: {
+                                    'q' : value
+                                },
+                                dataType: "text",
+                                success: function(msg){
+                                    //we need to check if the value is the same
+                                    if (value===$(that).val()) {
+                                        var result = JSON.parse(msg);
+                                        $.each(result, function(key, arr) {
+                                            $.each(arr, function(id, value) {
+                                                if (key === 'typeappointment') {
+                                                    if (id !== 'error') {
+                                                        console.log(value[1]);
+                                                        entitySelector.append('<li><b>' + value[0] + '</b> <a href="/afficheuntype/'+id+'">voir ici'+'</a></li>');
+
+                                                    } else {
+                                                        entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+            </script>
+
+ </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Actions</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        {% for type in types %}
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ type.nomtype }}</td>
+                                                <td>{{ type.description }}</td>
+                                                <td>
+                                               <a href="{{ path('delete_type', {'id': type.id}) }}"><button type="button" class="btn btn-sm btn-outline-danger">supprimer</button></a>
+                                               <hr>
+                                               <a href="{{ path('edit_type', {'id': type.id}) }}"><button type="button" class="btn btn-sm btn-outline-info">modifier</button></a>
+                                                </td>
+                                                
+                                            </tr>
+
+                                        </tbody>
+                                        {% endfor %}
+                                    </table>
+
+
+
+
+
+
+
+
+                                 
+        <div class="pagination-container pagination-link pagination-ellipsis">
+    {{ knp_pagination_render(types) }}
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+       
+          
+
+
+                            
+        
+        </div>
+                                    <style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 1.2rem;
+    }
+    
+
+    .pagination-ellipsis {
+        margin: 0 5px;
+        font-size: 1.5rem;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .pagination-link {
+            padding: 5px;
+            font-size: 1rem;
+        }
+        
+        .pagination-ellipsis {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+
+{% endblock %}
+

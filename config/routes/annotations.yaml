@@ -1,0 +1,21 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: annotation
+
+
+app_doctor_list:
+  path: /doctors
+  defaults: { _controller: App\Controller\DoctorController::list }
+  methods: [GET]
+
+reserve_appointment:
+  path: /doctors/{id}
+  defaults: { _controller: App\Controller\DoctorController::profile }
+  methods: [GET,POST]
+
+
+

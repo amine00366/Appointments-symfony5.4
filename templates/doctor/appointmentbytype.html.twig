@@ -1,0 +1,98 @@
+ {%  extends 'base.html.twig' %}
+
+{% block body %}
+<div class="album py-5 bg-light">
+        <div class="container">
+    <h1 class="section-title">Lists des rendez-vous</h1>
+
+    <div class="album py-5 bg-light">
+        </div>
+ <div class="post-container">
+                     <div class="row">
+
+<div class="nk-widget nk-widget-highlighted">
+    <h4 class="nk-widget-title"><span><span class="text-main-1">Category</span> Menu</span></h4>
+    <div class="nk-widget-content">
+    
+        <ul class="nk-widget-categories">
+
+            {% for c in type %}
+            <li><a href="{{ path('List_By_type', {'id': c.id}) }}"> {{ c.nomtype }}</a></li>
+            {% endfor %}
+            
+           
+        </ul>
+    </div>
+</div>
+                    <section class="featured section-padding">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="heading">
+                                        <h1 class="section-title">liste des Rendez-vous</h1>
+                                        <h4 class="sub-title">tu peux Aussi modifier ou supprimer un rendez-vous</h4>
+                                    </div>
+                                </div>
+
+                                {% for appointment in appointments %}
+
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <div class="homes-tag featured">Blog</div>
+                                            <div class="homes-tag rent"><i class="lni-heart"></i> 202</div>
+
+                                            
+                                        </figure>
+                                        <div class="content-wrapper">
+                                            <div class="feature-content">
+                                               
+                                                {# <label>nom du docteur :</label>  <p>{{ appointment.doctor.name }}</p>  #}
+                       <br/> <label>date du Rendez-vous</label><p> {{ appointment.appointmentDate|date("Y-m-d H:i:s") }}</p>
+                         <!--<p>/*{{ appointment.datefin|date('Y-m-d H:i:s') }}*/ </p>!-->
+                        
+                         <br/> <label>type de rendez-vous</label><p><p>{{ appointment.categorie }}</p>
+                         <br/> <label>Genre du rendez-vous</label><p><p>{{ appointment.type }}</p>
+
+                                                <div class="meta-tag">
+                                                    
+                                                    <div class="user-name">
+                                                       
+                                                    </div>
+                                                    <div class="listing-category">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="listing-bottom clearfix">
+                                                <div class="btn-group">
+                        
+
+                                                <a href="{{ path('update-res',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-info">Update</button></a>
+            <a href="{{ path('delete_res',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a>
+                                               
+                                               
+
+                                                </div> 
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    </section>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    
+    </div>
+   
+{% endblock %}

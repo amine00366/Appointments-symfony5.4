@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier{% endblock %}
+
+
+
+{% block body %}
+
+    <div id="calendrier" style="width: 50%; ; margin: auto; background-color: #e8e8e8; font-family: Arial, sans-serif; font-size: 14px; color: #333;"
+            >
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    window.onload = () => {
+        let calendarElt = document.querySelector("#calendrier")
+        let calendar = new FullCalendar.Calendar(calendarElt, {
+            initialView: 'timeGridWeek',
+            locale: 'tn',
+            timeZone: 'afrique/tunis',
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+
+                end: 'dayGridMonth,timeGridWeek,listWeek,timeGridDay'
+            },
+            events: {{ data|raw  }},
+            editable: false,
+            eventResizableFromStart: false
+        })
+        
+            
+           
+        calendar.render()
+    }
+</script>
+
+{% endblock %}

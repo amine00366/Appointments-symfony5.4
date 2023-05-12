@@ -1,0 +1,91 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+
+
+
+<div class="page-wrapper">
+  <div class="container-fluid">
+            
+               <a href="{{ path('app_addappoinment') }}"><button type="button" class="btn btn-gd btn-outline-info">ajouter </button></a>
+                <div class="row page-titles">
+          
+                    <div class="col-md-7 align-self-center">
+                        
+                    </div>
+                    
+                </div>
+               
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+
+
+</div>
+         <h4 class="card-title">Les Resultats de votre recherche</h4>
+                                
+   <div class="form-check">
+              <div>
+                               
+                                <ul class="navbar-nav w-100" style="margin-top: 18px;">
+                        <li class="nav-item w-100">
+                            
+                        </li>
+                    </ul>
+                                </div>
+                                </div>
+                               
+                               
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                
+                                                <th>id</th>
+                                                <th>Nom</th>
+                                                <th>Description</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
+                                            <tr>
+                                            <td>{{ id }}</td>
+                                                <td>{{ nom }}</td>
+                                                <td>{{ description }}</td>
+                                                <td>
+                                              
+                                                </td>
+                                                
+                                            </tr>
+
+                                        </tbody>
+                                       
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+         </div>
+       
+          
+
+
+                            
+        
+        </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+

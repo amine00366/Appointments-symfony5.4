@@ -1,0 +1,193 @@
+{% block stylesheets %}
+
+    <!-- Bootstrap Core CSS -->
+    <link href={{asset("back/assets/node_modules/bootstrap/css/bootstrap.min.css")}} rel="stylesheet">
+    <link href={{asset("back/assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css")}} rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- chartist CSS -->
+    <link href={{asset("back/assets/node_modules/morrisjs/morris.css")}} rel="stylesheet">
+    <!--c3 CSS -->
+    <link href={{asset("back/assets/node_modules/c3-master/c3.min.css")}} rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href={{asset("back/html/css/style.css")}} rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href={{asset("back/html/css/pages/dashboard1.css")}} rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href={{asset("back/html/css/colors/default.css")}} id="theme" rel="stylesheet">
+{% endblock %}
+
+
+{% block header %}
+
+
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                           
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                            <!-- dark Logo text -->
+                            <center>
+                            <img src="back/assets/images/logopi.png"  class="dark-logo" width="75px" />
+                            <!-- Light Logo text -->
+       </span>
+                            </center>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark"
+                                href="javascript:void(0)"><i class="fa fa-bars"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item hidden-xs-down search-box"> <a
+                                class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
+                                    class="fa fa-search"></i></a>
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search & enter"> <a
+                                    class="srh-btn"><i class="fa fa-times"></i></a></form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <!-- ============================================================== -->
+                        <!-- Profile -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown u-pro">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#"
+                                id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                    src="back/assets/images/users/1.jpg" alt="user" class="" /> <span
+                                    class="hidden-md-down">Mark Sanders &nbsp;</span> </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+{% endblock %}
+
+{% block body %}
+
+
+
+{% endblock %}
+{% block sidebar %}
+
+<aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li> <a class="waves-effect waves-dark" href="{{ path('app_dashboard') }}" aria-expanded="false"><i
+                                    class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                        </li>
+                        
+                                    <!-- !-->
+<li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="fa fa-user-circle-o"></i><span>Rendez-vous</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="components-alerts.html">
+                    <a class="nav-link collapsed" href="{{ path('stat') }}">
+              <i class="bi bi-circle"></i><span>Statistique</span>
+            </a>
+          </li>
+        
+          <li>
+            <a href="components-badges.html">
+                                <a class="nav-link collapsed" href="{{ path('listeall') }}">
+
+              <i class="bi bi-circle"  ></i><span>List Rendez-vous</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-badges.html">
+                                <a class="nav-link collapsed" href="{{ path('app_type_list') }}">
+
+              <i class="bi bi-circle"   ></i><span>type</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Components Nav -->
+
+                                    <!-- !-->
+                       
+                        <li> <a class="waves-effect waves-dark" href="{{ path('app_admin') }}" aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu">Utilisateurs</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{{ path('app_admin') }}" aria-expanded="false"><i
+                                    class="fa fa-smile-o"></i><span class="hide-menu">Reclamations</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{{ path('app_admin') }}" aria-expanded="false"><i
+                                    class="fa fa-globe"></i><span class="hide-menu">Consultation</span></a>
+                        </li>
+                        <li> <a class="waves-effect waves-dark" href="{{ path('app_admin') }}" aria-expanded="false"><i
+                                    class="fa fa-bookmark-o"></i><span class="hide-menu">Avis</span></a>
+                        </li>
+                       
+                    </ul>
+                    
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            
+            <!-- End Sidebar scroll-->
+        </aside>
+
+{% endblock %}
+{% block footer %}
+
+
+<footer class="footer"> © 2021  by 404 EROOR GROUPE</a> </footer>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src={{asset("back/assets/node_modules/jquery/jquery.min.js")}}></script>
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src={{asset("back/assets/node_modules/bootstrap/js/bootstrap.bundle.min.js")}}></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src={{asset("back/html/js/perfect-scrollbar.jquery.min.js")}}></script>
+    <!--Wave Effects -->
+    <script src={{asset("back/html/js/waves.js")}}></script>
+    <!--Menu sidebar -->
+    <script src={{asset("back/html/js/sidebarmenu.js")}}></script>
+    <!--Custom JavaScript -->
+    <script src={{asset("back/html/js/custom.min.js")}}></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!--morris JavaScript -->
+    <script src={{asset("back/assets/node_modules/raphael/raphael-min.js")}}></script>
+    <script src={{asset("back/assets/node_modules/morrisjs/morris.min.js")}}></script>
+    <!--c3 JavaScript -->
+    <script src={{asset("back/assets/node_modules/d3/d3.min.js")}}></script>
+    <script src={{asset("back/assets/node_modules/c3-master/c3.min.js")}}></script>
+    <!-- Chart JS -->
+    <script src={{asset("back/html/js/dashboard1.js")}}></script>
+
+{% endblock %}

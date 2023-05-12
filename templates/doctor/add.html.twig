@@ -1,0 +1,74 @@
+ {%  extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Add Doctor</h1>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
+        {{ form_errors(form.username) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+
+    <div class="form-group map-container">
+        <div id="form_map" style='width: 100%; height: 400px;'></div>
+        {{ form_widget(form.latitude, {'attr': {'class': 'latitude-field', 'hidden': true}}) }}
+        {{ form_widget(form.longitude, {'attr': {'class': 'longitude-field', 'hidden': true}}) }}
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">{{ form_label(form.save) }}</button>
+    </div>
+
+    {{ form_end(form) }}
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
+
+    <script>
+        mapboxgl.accessToken = '{{ mapbox_access_token }}';
+
+        var latitudeField = document.querySelector('.latitude-field');
+        var longitudeField = document.querySelector('.longitude-field');
+
+        console.log('Latitude field:', latitudeField);
+        console.log('Longitude field:', longitudeField);
+
+        var map = new mapboxgl.Map({
+            container: 'form_map',
+             style: 'mapbox://styles/mapbox/dark-v10',
+            center: [10.181667, 36.806389],
+            zoom: 3
+        });
+
+        console.log('Map:', map);
+
+        // Add a draggable marker to the map
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([10.181667,36.806389])
+            .addTo(map);
+
+        console.log('Marker:', marker);
+
+        // Update latitude and longitude fields on marker drag
+        marker.on('drag', function () {
+            var lngLat = marker.getLngLat();
+            latitudeField.value = lngLat.lat;
+            longitudeField.value = lngLat.lng;
+        });
+    </script>
+{% endblock %}

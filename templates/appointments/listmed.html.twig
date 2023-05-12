@@ -1,0 +1,122 @@
+
+
+
+
+
+
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+<div class="album py-5 bg-light">
+        <div class="container">
+    <h1 class="section-title">Lists des rendez-vous</h1>
+
+    <div class="album py-5 bg-light">
+        </div>
+          
+            <div class="post-container">
+                     <div class="row">
+
+
+                    <section class="featured section-padding">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="heading">
+                                        <h1 class="section-title">liste des Rendez-vous</h1>
+                                        <h4 class="sub-title">tu peux Aussi modifier ou supprimer un rendez-vous</h4>
+                                    </div>
+                                </div>
+
+                                {% for appointment in reservations %}
+
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <div class="homes-tag featured">Blog</div>
+                                            <div class="homes-tag rent"><i class="lni-heart"></i> 202</div>
+
+                                            
+                                        </figure>
+                                        <div class="content-wrapper">
+                                            <div class="feature-content">
+                                               
+                                                 <label>nom du patient :</label>  <p>{{ appointment.user.name }}</p> 
+                       <br/> <label>date du Rendez-vous</label><p> {{ appointment.appointmentDate|date("Y-m-d H:i:s") }}</p>
+                         <!--<p>/*{{ appointment.datefin|date('Y-m-d H:i:s') }}*/ </p>!-->
+                        
+                         <br/> <label>type de rendez-vous</label><p><p>{{ appointment.categorie }}</p>
+                         <br/> <label>Genre du rendez-vous</label><p><p>{{ appointment.type }}</p>
+
+                                                <div class="meta-tag">
+                                                    
+                                                    <div class="user-name">
+                                                       
+                                                    </div>
+                                                    <div class="listing-category">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="listing-bottom clearfix">
+                                                <div class="btn-group">
+                        
+
+                                                <a href="{{ path('update-res',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-info">Update</button></a>
+            <a href="{{ path('delete_reservation',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a>
+                                               {% if not appointment.isApproved() %}
+           
+            <button class="approve-button btn btn-sm btn-outline-primary " data-comment-id="{{ appointment.getId() }}" onclick="refreshPage()">Approve</button></a>
+
+        {% endif %}
+                                               
+
+                                                </div> 
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                    </section>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    
+    </div>
+    <script>
+    const approveButtons = document.querySelectorAll('.approve-button');
+    approveButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const commentId = button.dataset.commentId;
+            fetch(`/admin/postcomments/approve/${commentId}`)
+                .then(response => response.json())
+                .then(() => {
+                    // Reload the page to show the updated comments
+                    location.reload();
+                })
+                .catch(error => console.error(error));
+        });
+    });
+    function refreshPage() {
+    // Rafraîchir la page
+    window.location.href = window.location.href;
+}
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

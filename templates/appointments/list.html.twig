@@ -1,0 +1,197 @@
+{%  extends 'base.html.twig' %}
+
+
+{% block body %}
+{# ///////////////////// #}
+
+
+
+
+
+
+
+
+
+
+
+{# //////////////////////////// #}
+<div class="album py-5 bg-light">
+        <div class="container">
+   
+
+    <div class="album py-5 bg-light">
+        </div>
+          <!--  !-->
+
+          {# <div class="nk-widget nk-widget-highlighted">
+    <h4 class="nk-widget-title"><span><span class="text-main-1">Category</span> Menu</span></h4>
+    <div class="nk-widget-content">
+    
+        <ul class="nk-widget-categories">
+
+          {% for c in type %}
+            
+            <li><a href="{{ path('List_By_type', {'id': c.id}) }}"> {{ c }}</a></li>
+            {% endfor %} 
+             
+           
+        </ul>
+    </div>
+</div> #}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+{# <div class="wrapper">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">6</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div> #}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# <div class="nk-widget nk-widget-highlighted">
+<center>
+    <h4 class="nk-widget-title"><span><span class="text-main-1">Category</span> Menu</span></h4>
+   </center>
+   <div class="nk-widget nk-widget-highlighted">
+   
+    <div class="nk-widget-content">
+        <div class="container-fluid px-0">
+            <ul class="nk-widget-categories">
+                {% for c in type %}
+                <li class="d-inline-block">
+                    <a href="{{ path('List_By_type', {'id': c.id}) }}" class="p-2">{{ c.nomtype }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div> #}
+         
+            <div class="post-container">
+                     <div class="row">
+
+
+                    <section class="featured section-padding">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="heading">
+                                        <h1 class="section-title">liste des Rendez-vous</h1>
+                                        <h4 class="sub-title">tu peux Aussi modifier ou supprimer un rendez-vous méme voir les détails dans un MAP</h4>
+                                    </div>
+                                </div>
+
+                                {% for appointment in appointments %}
+                                {% if appointment.isApproved %}
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                    <div class="featured-box">
+                                        <figure>
+                                            <div class="homes-tag featured">Blog</div>
+                                            <div class="homes-tag rent"><i class="lni-heart"></i> 202</div>
+
+                                            
+                                        </figure>
+                                        <div class="content-wrapper">
+                                            <div class="feature-content">
+                                               
+                                                <label>nom du docteur :</label>  <p>{{ appointment.doctor.name }}</p>
+                       <br/> <label>date du Rendez-vous</label><p> {{ appointment.appointmentDate|date("Y-m-d H:i:s") }}</p>
+                         <!--<p>/*{{ appointment.datefin|date('Y-m-d H:i:s') }}*/ </p>!-->
+                        
+                         <br/> <label>type de rendez-vous</label><p><p>{{ appointment.categorie }}</p>
+                         <br/> <label>Genre du rendez-vous</label><p><p>{{ appointment.type }}</p>
+
+                                                <div class="meta-tag">
+                                                    
+                                                    <div class="user-name">
+                                                       
+                                                    </div>
+                                                    <div class="listing-category">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="listing-bottom clearfix">
+                                                <div class="btn-group">
+                        
+                                                 <a href="{{ path('app_appointment_detail',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-info">détails</button></a>               
+                                                <a href="{{ path('update-res',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-info">Update</button></a>
+            <a href="{{ path('delete_res',{'id': appointment.id}) }}" class="c-link"><button type="button" class="btn btn-sm btn-outline-danger">Delete</button></a>
+                                               
+                                               
+
+                                                </div> 
+                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+{% endif %}
+
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </section>
+
+
+
+            </div>
+
+        </div>
+    </div>
+    
+    </div>
+     <style>
+   /* Style pour les liens du menu de catégories */
+.nk-widget-categories li a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.nk-widget-categories li:last-child a {
+  margin-right: 0;
+}
+
+/* Style pour les liens actifs du menu de catégories */
+.nk-widget-categories li a.active {
+  color: #fff;
+}
+
+/* Style pour les classes de Bootstrap */
+.nk-widget-categories li a:hover {
+  color: #007bff;
+  background-color: #f8f9fa;
+}
+
+.nk-widget-categories li.active a:hover {
+  background-color: #007bff;
+}
+    </style>
+{% endblock %}

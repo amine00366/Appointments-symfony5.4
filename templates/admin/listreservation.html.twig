@@ -1,0 +1,168 @@
+{% extends 'admin.html.twig' %}
+{% block body %}
+<div class="page-wrapper">
+
+
+
+
+            <div class="container-fluid">
+            
+              
+                <div class="row page-titles">
+          
+                    <div class="col-md-7 align-self-center">
+                        
+                    </div>
+                    
+                </div>
+               
+                <div class="row">
+                   
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+
+
+</div>
+                                <h4 class="card-title">table des Rendez-Vous</h4>
+                                
+                                
+ <center>
+
+
+<div class="album py-5 bg-light">
+       
+ </center>
+
+
+
+
+
+
+
+<center>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="nk-widget nk-widget-highlighted">
+<center>
+    <h4 class="nk-widget-title"><span><span class="text-main-1">Filtrer</span> par Type</span></h4>
+   </center>
+   <div class="nk-widget nk-widget-highlighted">
+   
+    <div class="nk-widget-content">
+        <div class="container-fluid px-0">
+            <ul class="nk-widget-categories">
+                {% for c in type %}
+                <li class="d-inline-block">
+                    <a href="{{ path('List_By_type', {'id': c.id}) }}" class="p-2">{{ c.nomtype }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</center>
+
+
+
+
+
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                
+                                                <th>Nom Patient</th>
+                                                <th>Docteur</th>
+                                                <th>Date Rendez Vous</th>
+                                                <th>catégorie</th>
+                                                <th>type</th>
+                                                <th>approuvement</th>
+                                                <th>Actions</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        {% for type in reservations %}
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ type.doctor.name }}</td>
+                                                <td>{{ type.user.name }}</td>
+                                                <td>{{ type.appointmentDate|date("Y-m-d H:i:s") }}</td>
+                                                <td>{{ type.categorie }}</td>
+                                                <td>{{ type.type.nomtype }}</td>
+                                                 <td> {% if type.approved   %} approuvé {% else %} Non approuvé {% endif %}</td>
+                                                <td>
+                                               <a href="{{ path('delete_type', {'id': type.id}) }}"><button type="button" class="btn btn-sm btn-outline-danger">supprimer</button></a>
+                                               <hr>
+                                               <a href="{{ path('edit_type', {'id': type.id}) }}"><button type="button" class="btn btn-sm btn-outline-info">modifier</button></a>
+                                                </td>
+                                                
+                                            </tr>
+
+                                        </tbody>
+                                        {% endfor %}
+                                    </table>
+
+
+
+
+
+
+
+
+                                 
+         <div class="pagination-container pagination-link pagination-ellipsis">
+    {{ knp_pagination_render(reservations) }}
+</div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+       
+          
+
+
+                            
+        
+        </div>
+                                    <style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 1.2rem;
+    }
+    
+
+    .pagination-ellipsis {
+        margin: 0 5px;
+        font-size: 1.5rem;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .pagination-link {
+            padding: 5px;
+            font-size: 1rem;
+        }
+        
+        .pagination-ellipsis {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+
+{% endblock %}
+

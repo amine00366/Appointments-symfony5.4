@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div style=" margin-top:50px ;margin-left:250px;">
+<a href="{{ path('app_appointments') }}" ><button type="button" class="btn btn-sm btn-outline-danger">Retour au liste</button></a>
+</div>
+<center>
+    <h1 class="mb-3 text-danger">Détails de votre Rendez-Vous</h1>
+    <br>
+    <h5>Veuillez cliquer sur le marqueur pour voir les détails</h5>
+    
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet'/>
+    <div id='map' style='width: 75%; height: 450px; margin:20px 200px;'></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZmplcmJpIiwiYSI6ImNrdWp6bXJhdTE4MGwyd215bzhpb3c0OGYifQ.jW0ZovMg20DoAaiOtGkPhg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v10',
+            center: [{{ appointment.doctor.longitude }}, {{ appointment.doctor.latitude }}],
+            zoom: 5
+        });
+
+        // Add a custom marker to the map
+        var marker = new mapboxgl.Marker({
+            color: 'red'
+        })
+        .setLngLat([{{ appointment.doctor.longitude }}, {{ appointment.doctor.latitude }}])
+        .setPopup(new mapboxgl.Popup({ offset: 25 })
+            .setHTML('<ul><li><p>Docteur: {{ appointment.doctor.name }}</p></li> <li><img width="30px" height="30px" src="https://t3.ftcdn.net/jpg/02/60/04/08/360_F_260040863_fYxB1SnrzgJ9AOkcT0hoe7IEFtsPiHAD.jpg" /></li><li><p>date: {{ appointment.appointmentDate|date("Y-m-d H:i:s")  }}</p></li><li><p>catégorie: {{ appointment.categorie }}</p></li><li><p>type: {{ appointment.type }}</p></li></ul>'))
+        .addTo(map);
+    </script>
+</center>    
+{% endblock %}

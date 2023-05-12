@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+
+<center>
+<!--{% if app.session.flashBag.has('error') %}
+    <div class="alert alert-danger">
+        {{ app.session.flashBag.get('error')[0] }}
+    </div>
+{% endif %}
+
+{% if app.session.flashBag.has('success') %}
+    <div class="alert alert-success">
+        {{ app.session.flashBag.get('success')[0] }}
+    </div>
+{% endif %}!-->
+
+
+
+<div class="container">
+   {{ form_start (form,{'attr': {'novalidate': 'novalidate '}} ) }} 
+    
+    <div class="text-center">
+    {{ form_widget(form.appointmentDate) }}
+    {{ form_errors(form.appointmentDate) }}
+    <br/>
+    {{ form_widget(form.type) }}
+    {{ form_errors(form.type) }} 
+    <br/>
+      {{ form_widget(form.categorie) }}
+    {{ form_errors(form.categorie) }} 
+    <br/>
+    <center>
+    <button type="submit" class="btn btn-primary"
+             style= "font-size=16px" > confirmer votre Reservation</button>
+             </center>
+             </div>
+    {{ form_end(form) }}
+    <br/>
+    <div class="text-center">
+    pour consulter votre liste de reservation 
+    <div>
+    <a href="{{ path('app_appointments') }}"><button type="button" class="btn btn-sm btn-outline-danger">retour</button></a>
+    </div>
+    <div> 
+    </div>
+    
+    </center>
+
+<style>
+.text-center{
+    margin : 50px
+}
+.form-control.datetimepicker-input {
+    border: 1px solid red;
+}
+</style>
+{% endblock %}
+
+
+
+
+
+
